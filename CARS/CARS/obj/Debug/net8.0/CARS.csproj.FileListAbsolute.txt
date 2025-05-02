@@ -68,3 +68,4 @@ C:\Users\ASUS\Desktop\CARS\CARS\CARS\obj\Debug\net8.0\refint\CARS.dll
 C:\Users\ASUS\Desktop\CARS\CARS\CARS\obj\Debug\net8.0\CARS.pdb
 C:\Users\ASUS\Desktop\CARS\CARS\CARS\obj\Debug\net8.0\CARS.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\CARS\CARS\CARS\obj\Debug\net8.0\ref\CARS.dll
+C:\Users\ASUS\Desktop\CARS\CARS\CARS\obj\Debug\net8.0\CARS.sourcelink.json

@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
-using Azure;
 using CARS2;
 
 var ip = IPAddress.Parse("127.0.0.1");
@@ -51,7 +50,7 @@ Year: {c.Year}"));
             command = new Command
             {
                 Text = Command.Post,
-                Param = JsonSerializer.Serialize(newCar)
+                Value = newCar
             };
             bw.Write(JsonSerializer.Serialize(command));
             response = br.ReadString();
@@ -69,7 +68,7 @@ Year: {c.Year}"));
             command = new Command
             {
                 Text = Command.Put,
-                Param = JsonSerializer.Serialize(updatedCar)
+                Value = updatedCar
             };
             bw.Write(JsonSerializer.Serialize(command));
             response = br.ReadString();
@@ -78,11 +77,12 @@ Year: {c.Year}"));
 
         case Command.Delete:
             Console.Write("Enter ID: ");
-            var idToDelete = Console.ReadLine();
+            var idToDelete = int.Parse(Console.ReadLine());
+            var dummyCar = new Car { ID = idToDelete };
             command = new Command
             {
                 Text = Command.Delete,
-                Param = idToDelete
+                Value = dummyCar
             };
             bw.Write(JsonSerializer.Serialize(command));
             response = br.ReadString();

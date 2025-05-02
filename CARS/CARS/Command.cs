@@ -6,5 +6,5 @@ public class Command
     public const string Put = "PUT";
     public const string Delete = "DELETE";
     public string? Text { get; set; }
-    public string? Param { get; set; }
+    public Car Value { get; set; }
 }

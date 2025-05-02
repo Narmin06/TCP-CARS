@@ -29,13 +29,12 @@ while (true)
                 bw.Write(JsonSerializer.Serialize(allCars));
                 break;
             case Command.Post:
-                var newCar = JsonSerializer.Deserialize<Car>(command.Param!);
-                context.Cars.Add(newCar);
+                context.Cars.Add(command.Value);
                 context.SaveChanges();
                 bw.Write("Car added successfully.");
                 break;
             case Command.Put:
-                var updatedCar = JsonSerializer.Deserialize<Car>(command.Param!);
+                var updatedCar = command.Value;
                 var updatedCarID = context.Cars.FirstOrDefault(c => c.ID == updatedCar.ID);
                 if (updatedCarID != null)
                 {
@@ -47,21 +46,18 @@ while (true)
                 else { bw.Write("Car not found."); }
                 break;
             case Command.Delete:
-                if (int.TryParse(command.Param, out int idToDelete))
+                var idToDelete = command.Value.ID;
+                var carToDelete = context.Cars.FirstOrDefault(c => c.ID == idToDelete);
+                if (carToDelete != null)
                 {
-                    var carDeleteID = context.Cars.FirstOrDefault(c => c.ID == idToDelete);
-                    if (carDeleteID != null)
-                    {
-                        context.Cars.Remove(carDeleteID);
-                        context.SaveChanges();
-                        bw.Write("Car deleted successfully.");
-                    }
-                    else
-                    {
-                        bw.Write("Car not found.");
-                    }
+                    context.Cars.Remove(carToDelete);
+                    context.SaveChanges();
+                    bw.Write("Car deleted successfully.");
                 }
-                else { bw.Write("Invalid ID."); }
+                else
+                {
+                    bw.Write("Car not found.");
+                }
                 break;
             default:
                 break;
