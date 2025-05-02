@@ -78,11 +78,11 @@ Year: {c.Year}"));
         case Command.Delete:
             Console.Write("Enter ID: ");
             var idToDelete = int.Parse(Console.ReadLine());
-            var dummyCar = new Car { ID = idToDelete };
+            var deletedCar = new Car { ID = idToDelete };
             command = new Command
             {
                 Text = Command.Delete,
-                Value = dummyCar
+                Value = deletedCar
             };
             bw.Write(JsonSerializer.Serialize(command));
             response = br.ReadString();
